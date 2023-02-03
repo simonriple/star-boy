@@ -26,7 +26,7 @@ export class FaceDetector {
             throw new Error('call setupFaceDetector method first on this class before calling this')
         }
         const data = await this.detector.estimateFaces(video,{flipHorizontal: true})
-        // console.log(data)
+        //TODO use all registered faces
         const keypoints = data?.[0]?.keypoints
         if (keypoints) {
             const flatData = flattenFacialLandMarkArray(keypoints)

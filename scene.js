@@ -9,12 +9,14 @@ export const renderScene = (detector,video) => {
         height: window.innerHeight,
     }
     const camera = new PerspectiveCamera(75, sizes.width / sizes.height, 0.01, 100)
-    const renderer = new WebGLRenderer()
-
-    document.body.appendChild(renderer.domElement)
+    const renderer = new WebGLRenderer({
+        antialias:true,
+        alpha:true
+    })
+    const container = document.getElementById( 'container' );
+    container.appendChild(renderer.domElement)
     renderer.setSize(sizes.width, sizes.height)
     renderer.setPixelRatio(Math.max(window.devicePixelRatio, 2))
-    renderer.setClearColor('#031E2F')
 
     window.addEventListener('resize', () => {
         // Update sizes
@@ -36,7 +38,9 @@ export const renderScene = (detector,video) => {
     camera.lookAt(0, 0, 0)
     // const orbitControlsUpdate = this.threeSetUp.applyOrbitControls()
 
-    const pointCloud = new PointCloud()
+    const background = new PointCloud("#b1b1b1")
+    scene.add(background.cloud)
+    const pointCloud = new PointCloud(undefined,50)
     scene.add(pointCloud.cloud)
 
     // const gridHelper = new THREE.GridHelper(10, 10)
@@ -45,8 +49,12 @@ export const renderScene = (detector,video) => {
     const animate = async () => {
         requestAnimationFrame(animate)
         const facePositions = await detector.detectFace(video)
+       
         // console.log(facePositions)
         pointCloud.lerpToPos(facePositions)
+        background.cloud.rotateZ(0.001)
+        background.cloud.rotateX(0.0001)
+        background.flow()
         // if(facePositions){
         // }else {
         //     // pointCloud.lerpToDefault()

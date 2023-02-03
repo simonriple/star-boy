@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npx parcel index.html"
+    "start": "npx parcel index.html public/** --open"
   },
   "author": "Simon Riple",
   "license": "ISC",

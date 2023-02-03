@@ -5,12 +5,12 @@ import gsap, { random } from 'gsap'
 const cnt = 478
 export default class PointCloud {
     
-    constructor() {
+    constructor(color = "#FFFFFF",maxRange = 5) {
         const startPosArray = new Float32Array(cnt*3)
         for(let i = 0; i< cnt*3; i++){
-            startPosArray[i] = (Math.random() - 0.5)*5
+            startPosArray[i] = (Math.random() - 0.5)*maxRange
         }
-        console.log(startPosArray)
+        
         this.startPosArray = startPosArray
         this.startpoints = new THREE.BufferAttribute(this.startPosArray,3)
         const startBufferGeometry = new THREE.BufferGeometry()
@@ -18,7 +18,7 @@ export default class PointCloud {
 
         this.bufferGeometry = startBufferGeometry
         this.material = new THREE.PointsMaterial({
-            color: "#FFFFFF",
+            color: color,
             size: 0.05,
             map: new THREE.TextureLoader().load(
                 "https://raw.githubusercontent.com/Kuntal-Das/textures/main/sp2.png"
@@ -35,9 +35,8 @@ export default class PointCloud {
         
         gsap.to(this.bufferGeometry.attributes.position.array, {
             endArray,
-            duration: 3,
+            duration: 2,
             ease: 'power2',
-            overwrite:true,
             // Make sure to tell it to update if not using the tick function
             onUpdate: () => {
                 this.bufferGeometry.attributes.position.needsUpdate = true;
@@ -45,17 +44,10 @@ export default class PointCloud {
         })
     }
     
-    lerpToDefault(){
-        gsap.to(this.bufferGeometry.attributes.position.array, {
-            endArray: this.startpoints.array,
-            duration: 3,
-            ease: 'power2',
-            // Make sure to tell it to update if not using the tick function
-            onUpdate: () => {
-                this.bufferGeometry.attributes.position.needsUpdate = true;
-            //   camera.lookAt(particles.position);
-            //   renderer.render(scene, camera);
-            },
-        })
+    flow(){
+        for(let i = 0; i< cnt*3; i++){
+            this.bufferGeometry.attributes.position.array[i] = this.bufferGeometry.attributes.position.array[i]+(Math.random() - 0.5)*0.003
+        }
+        this.bufferGeometry.attributes.position.needsUpdate = true;
     }
 }
