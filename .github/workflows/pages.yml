@@ -36,9 +36,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-      - run: npm install
-      - run: npm install @parcel/transformer-css --no-save
-      - run: npm run build
+      - run: npm install && npm install @parcel/transformer-css --no-save && npm run build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
