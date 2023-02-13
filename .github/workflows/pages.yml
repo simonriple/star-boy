@@ -37,7 +37,7 @@ jobs:
         with:
           node-version: 18
       - run: npm install
-      - run: npm install --save-dev @parcel/css
+      - run: npm install @parcel/css --no-save
       - run: npm run build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
