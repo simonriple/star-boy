@@ -10,8 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "@mediapipe/face_mesh": "^0.4.1633559619",
-    "@parcel/transformer-css": "^2.8.3",
-    "@parcel/css-linux-x64-gnu": "^1.13.1",
     "@tensorflow-models/face-landmarks-detection": "1.0.2",
     "@tensorflow/tfjs-converter": "3.21.0",
     "@tensorflow/tfjs-core": "3.21.0",
