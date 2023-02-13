@@ -5,6 +5,8 @@ body {
 	background-size: 400% 400%;
 	animation: gradient 35s ease infinite;
 	height: 100vh;
+    color:#FFFFFF;
+    font-family: 'Codystar', cursive;
 }
 
 @keyframes gradient {
@@ -17,6 +19,20 @@ body {
     100% {
         background-position: 0% 50%;
     }
+}
+
+h1 {
+    font-size: 3em;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+}
+
+.quote {
+    opacity: 1;
+    animation: 5s opacity;
 }
 
 .logo {

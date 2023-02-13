@@ -1,6 +1,7 @@
 import * as THREE from 'three'
 import { Scene, PerspectiveCamera, WebGLRenderer } from 'three'
 import PointCloud from './pointCloud'
+import * as quotes from './quotes.json'
 
 export const renderScene = (detector,video) => {
     const scene = new Scene()
@@ -13,6 +14,9 @@ export const renderScene = (detector,video) => {
         antialias:true,
         alpha:true
     })
+
+    const quoteElement = document.getElementById('quote')
+
     const container = document.getElementById( 'container' );
     container.appendChild(renderer.domElement)
     renderer.setSize(sizes.width, sizes.height)
@@ -45,12 +49,27 @@ export const renderScene = (detector,video) => {
 
     // const gridHelper = new THREE.GridHelper(10, 10)
     // scene.add(gridHelper)
+    let quoteIndex = 0;
+    console.log(quotes)
+
+    const renderText = (faceIsDetected) => {
+        const noText = quoteElement.innerText == ""
+
+        if(faceIsDetected && noText){
+            quoteElement.innerText = quotes[quoteIndex]
+        }else if(!faceIsDetected && !noText){
+            quoteElement.innerText = ""
+            quoteIndex = (quoteIndex+1) % quotes.length
+        }
+    }
 
     const animate = async () => {
         requestAnimationFrame(animate)
         const facePositions = await detector.detectFace(video)
        
-        // console.log(facePositions)
+        const faceIsDetected = Boolean(facePositions)
+        renderText(faceIsDetected)
+        
         pointCloud.lerpToPos(facePositions)
         background.cloud.rotateZ(0.001)
         background.cloud.rotateX(0.0001)

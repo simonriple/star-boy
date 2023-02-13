@@ -1,6 +1,6 @@
 const { Camera } = require("./camera");
 const { STATE } = require("./config");
-const { setupFaceDetector, FaceDetector } = require("./faceDetector");
+const { FaceDetector } = require("./faceDetector");
 const { renderScene} = require("./scene")
 
 const app = async () => {
