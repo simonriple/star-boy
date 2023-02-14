@@ -36,12 +36,12 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-      - run: npm install --save-dev @parcel/css-linux-x64-gnu 
-      - run: npm run build
+      - run: yarn 
+      - run: yarn build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: './build'
+          path: './dist'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1

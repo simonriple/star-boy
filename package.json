@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "npx parcel index.html public/** --open",
-    "build": "npx parcel build index.html --dist-dir build"
+    "start": "parcel index.html public/** --open",
+    "build": "parcel build index.html --no-source-maps --public-url ./"
   },
   "author": "Simon Riple",
   "license": "ISC",
@@ -17,8 +17,8 @@
     "three": "^0.149.0"
   },
   "devDependencies": {
-    "parcel": "^2.8.3",
     "buffer": "^5.7.1",
+    "parcel": "^2.8.3",
     "process": "^0.11.10"
   }
 }
