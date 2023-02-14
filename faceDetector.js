@@ -27,7 +27,7 @@ export class FaceDetector {
         }
         const data = await this.detector.estimateFaces(video,{flipHorizontal: true})
         //TODO use all registered faces
-        console.log(data.length)
+        // console.log(data.length)
         const keypoints = data?.[0]?.keypoints
         if (keypoints) {
             const flatData = flattenFacialLandMarkArray(keypoints)
