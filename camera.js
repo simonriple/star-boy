@@ -33,6 +33,7 @@ export class Camera {
       };
   
       const stream = await navigator.mediaDevices.getUserMedia(videoConfig);
+      console.log('Stream active:',stream.active)
   
       const camera = new Camera();
       camera.video.srcObject = stream;
@@ -43,8 +44,10 @@ export class Camera {
         };
       });
   
+      console.log(camera.video)
       camera.video.play();
       camera.video.hidden = true;
+      console.log(camera.video)
   
       const videoWidth = camera.video.videoWidth;
       const videoHeight = camera.video.videoHeight;
