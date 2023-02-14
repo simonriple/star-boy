@@ -73,7 +73,7 @@ export const renderScene = (detector,video) => {
         pointCloud.lerpToPos(facePositions)
         background.cloud.rotateZ(0.001)
         background.cloud.rotateX(0.0001)
-        background.flow()
+        // background.flow()
         // if(facePositions){
         // }else {
         //     // pointCloud.lerpToDefault()
